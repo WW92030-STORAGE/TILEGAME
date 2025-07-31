@@ -46,6 +46,38 @@ void run_pinsker() {
     std::cout << (int64_t)(v.size()) - 1 << "\n";
 }
 
+void example() {
+    std::string FOLDER = "puzzles/";
+    ifstream fin(FOLDER + "example.in"); // USACO test cases
+    int x, y;
+    fin >> x >> y;
+
+    TileGrid grid(x, y);
+
+    for (int i = 0; i < grid.X; i++) {
+        std::cout << i << "\n";
+        for (int j = 0; j < grid.Y; j++) {
+            fin >> x;
+            if (x == 1) grid.board[i][j] = GridTile::RED;
+            if (x == 2) grid.board[i][j] = GridTile::ORANGE;
+            if (x == 3) grid.board[i][j] = GridTile::YELLOW;
+            if (x == 4) grid.board[i][j] = GridTile::GREEN;
+            if (x == 5) grid.board[i][j] = GridTile::BLUE;
+            if (x == 6) grid.board[i][j] = GridTile::VIOLET;
+            if (x == 7) grid.board[i][j] = GridTile::PINK;
+            if (x == 8) grid.board[i][j] = GridTile::START;
+            if (x == 9) grid.board[i][j] = GridTile::END;
+        }
+    }
+    std::cout << "INPUT DONE\n";
+
+    if (grid.X * grid.Y <= 1000) std::cout << grid.sprintf() << "\n";
+
+    auto v = grid.solve(2, 0, true);
+    for (auto i : v) std::cout << i.to_string() << "\n";
+    std::cout << (int64_t)(v.size()) - 1 << "\n";
+}
+
 int main() {
     srand(42069);
 
@@ -53,7 +85,7 @@ int main() {
 	auto start = std::chrono::high_resolution_clock::now();
 
 
-    run_pinsker();
+    example();
 
 
 
